@@ -1,0 +1,33 @@
+# Entorns virtuals
+venv/
+.env/
+
+# Fitxers de compilació
+__pycache__/
+*.py[cod]
+*.so
+
+# Fitxers específics de Python 2
+*.pyo
+*.pyd
+
+# Fitxers de configuració i secrets
+*.env
+*.ini
+*.cfg
+
+# Fitxers de logs
+*.log
+
+# Fitxers de test
+.coverage
+.tox/
+
+# Altres
+.DS_Store
+.idea/
+.vscode/
+
+# Fitxers de distribució
+*.egg-info/
+
