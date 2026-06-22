@@ -4,6 +4,7 @@ import requests
 import json
 from .endpoints.check import CheckAPI  # Importem CheckAPI
 from .endpoints.config import ConfigAPI  # Importem ConfigAPI
+from .endpoints.customers import CustomersAPI
 from .endpoints.groups import GroupsAPI  # Importem GroupsAPI
 from .endpoints.projects import ProjectsAPI  # Importem ProjectsAPI
 from .endpoints.workers import WorkersAPI  # Importem WorkersAPI
@@ -21,9 +22,18 @@ class TimenetClient(object):
         }
         self.check = CheckAPI(self)  # Instanciem CheckAPI com a atribut del client
         self.config = ConfigAPI(self)  # Instanciem ConfigAPI
+        self.customers = CustomersAPI(self)
         self.groups = GroupsAPI(self)  # Instanciem GroupsAPI
         self.projects = ProjectsAPI(self)  # Instanciem ProjectsAPI
         self.workers = WorkersAPI(self)  # Instanciem WorkersAPI
+
+    def get_version(self):
+        """
+        Obté la versió de l'API pública de Timenet.
+
+        :return: Resposta JSON de l'API.
+        """
+        return self.request('GET', 'version')
 
     def _decode_response(self, response):
         try:
