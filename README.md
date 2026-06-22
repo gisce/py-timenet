@@ -33,6 +33,12 @@ tc = TimenetClient(token="XXXX")
 tc.workers.list()
 ```
 
+## Tests
+
+```bash
+python -m unittest discover -v
+```
+
 ## Contribució
 Les contribucions són benvingudes! Si vols col·laborar, si us plau,
 fes un fork del repositori i envia un pull request.
