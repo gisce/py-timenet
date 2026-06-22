@@ -33,6 +33,22 @@ tc = TimenetClient(token="XXXX")
 tc.workers.list()
 ```
 
+## Estratègia de validació de payloads
+
+`py-timenet` és un wrapper prim sobre l'API pública de Timenet. Els mètodes que
+creen o modifiquen dades accepten diccionaris Python i els envien com a JSON
+sense aplicar validació local de camps, dates, identificadors o valors
+enumerats. La font de veritat d'aquesta validació és Timenet, de manera que el
+client preserva compatibilitat amb canvis de l'API i amb instal·lacions que
+puguin acceptar camps addicionals.
+
+El contracte d'aquesta llibreria és construir correctament la URL, el mètode
+HTTP, els paràmetres de consulta i el cos JSON. Les operacions d'escriptura més
+delicades tenen tests específics per evitar regressions en aquests punts. Si un
+projecte necessita validació prèvia, és millor encapsular-la en una capa pròpia
+de l'aplicació o en helpers compatibles amb Python 2.7 que deleguin igualment
+la resposta final a Timenet.
+
 ## Tests
 
 ```bash
