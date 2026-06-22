@@ -57,4 +57,70 @@ class CheckAPI(object):
             params['mode'] = mode
         return self.client.request('GET', 'check/status/byday', params=params)
 
+    def current(self, worker=None, checkpoint=None):
+        """
+        Obté el check actual.
 
+        :param worker: ID del treballador (opcional).
+        :param checkpoint: ID del checkpoint (opcional).
+        :return: Resposta JSON de l'API.
+        """
+        params = {}
+        if worker:
+            params['worker'] = worker
+        if checkpoint:
+            params['checkpoint'] = checkpoint
+        if not params:
+            params = None
+        return self.client.request('GET', 'check/current', params=params)
+
+    def get_incidences(self, start, end, worker=None):
+        """
+        Obté una llista d'incidències de checks.
+
+        :param start: Data d'inici (format 'YYYY-MM-DD').
+        :param end: Data de finalització (format 'YYYY-MM-DD').
+        :param worker: ID del treballador (opcional).
+        :return: Resposta JSON de l'API.
+        """
+        params = {'start': start, 'end': end}
+        if worker:
+            params['worker'] = worker
+        return self.client.request('GET', 'check/incidences', params=params)
+
+    def get_incidence(self, id_):
+        """
+        Obté informació d'una incidència específica.
+
+        :param id_: ID de la incidència.
+        :return: Resposta JSON de l'API.
+        """
+        return self.client.request('GET', 'check/incidences/{}'.format(id_))
+
+    def create_incidence(self, data):
+        """
+        Crea una nova incidència.
+
+        :param data: Dades de la incidència (diccionari).
+        :return: Resposta JSON de l'API.
+        """
+        return self.client.request('POST', 'check/incidences', data=data)
+
+    def update_incidence(self, id_, data):
+        """
+        Actualitza una incidència existent.
+
+        :param id_: ID de la incidència.
+        :param data: Dades actualitzades (diccionari).
+        :return: Resposta JSON de l'API.
+        """
+        return self.client.request('PUT', 'check/incidences/{}'.format(id_), data=data)
+
+    def delete_incidence(self, id_):
+        """
+        Elimina una incidència.
+
+        :param id_: ID de la incidència.
+        :return: Resposta JSON de l'API.
+        """
+        return self.client.request('DELETE', 'check/incidences/{}'.format(id_))
