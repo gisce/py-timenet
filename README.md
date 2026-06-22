@@ -39,6 +39,17 @@ tc.workers.list()
 python -m unittest discover -v
 ```
 
+GitHub Actions executes the test suite on pull requests with Python 3.11 using
+the pinned dependencies in `requirements-ci.txt`.
+
+Python 2.7 compatibility is kept as a local validation path only because GitHub
+hosted runners no longer provide a maintained Python 2.7 runtime:
+
+```bash
+python2.7 -m pip install -r requirements-py27.txt
+python2.7 -m unittest discover -v
+```
+
 ## Contribució
 Les contribucions són benvingudes! Si vols col·laborar, si us plau,
 fes un fork del repositori i envia un pull request.
